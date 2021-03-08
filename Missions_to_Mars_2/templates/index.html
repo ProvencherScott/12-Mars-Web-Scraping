@@ -25,8 +25,8 @@
     <div class="col-md-12">
       <h2><b>Latest Mars News</b></h2>
       <br>
-      <h3>{{ mars_data.first_title }}</h3>
-      <p>{{ mars_data.first_paragraph }}</p>
+      <h3>{{ mars.first_title }}</h3>
+      <p>{{ mars.first_paragraph }}</p>
     </div>
   </div>
 </div>
@@ -38,12 +38,12 @@
       <div class="table">
       <br>
       <h2><b>Featured Image</b></h2>
-      <img src="{{ mars_data.featured_image_url2 }}" class="img-fluid" style="width: 100%; height: 400px;">
+      <img src="https://d2pn8kiwq2w21t.cloudfront.net/images/jpegPIA23727.width-768.jpg" class="img-fluid" style="width: 100%; height: 400px;">
     </div>
   </div>
     <div class="col-md-6" style="margin:auto;">
-      <h2><b>Mars Facts</b></h2>
-      <p>{{ mars_data.mars_table|safe }}</p>
+      <h2><b>Mars Stats</b></h2>
+      <p>{{ mars.mars_table|safe }}</p>
   </div>
 
  <!-----------Image Grid for Mars Hemispheres--------->
