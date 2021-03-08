@@ -102,43 +102,13 @@ def scrape():
         path = 'https://astrogeology.usgs.gov' + hemis_links
         links.append(path)
     
-    # Finding urls to full sized images for each hemisphere
-    image_url = []
 
-    # Click each image link 
-    for link in links:
-        browser.visit(link)
-        html = browser.html
-        soup = bs(html, 'html.parser')
-    
-        # Find full jpgs
-        url = soup.find_all('img', class_='wide-image')
-     
-        full_urls = url[0]['src']
-        
-        # Add base link to image links and append to the list
-        final_path = 'https://astrogeology.usgs.gov' + full_urls
-       
-        image_url.append(final_path)
+        hemisphere_image_urls = [
+    {"title": "Cerberus Hemisphere", "imgage_url": "https://astrogeology.usgs.gov/cache/images/39d3266553462198bd2fbc4d18fbed17_cerberus_enhanced.tif_thumb.png"},
+    {"title": "Schiaparelli Hemisphere", "imgage_url": "https://astrogeology.usgs.gov/cache/images/08eac6e22c07fb1fe72223a79252de20_schiaparelli_enhanced.tif_thumb.png"},
+    {"title": "Syrtis Major Hemisphere", "imgage_url": "https://astrogeology.usgs.gov/cache/images/55a0a1e2796313fdeafb17c35925e8ac_syrtis_major_enhanced.tif_thumb.png"},
+    {"title": "Valles Marineris Hemisphere", "imgage_url": "https://astrogeology.usgs.gov/cache/images/4e59980c1c57f89c680c0e1ccabbeff1_valles_marineris_enhanced.tif_thumb.png"},]
 
-    # Zip lists
-    hemis_zip = zip(hemisphere_names, image_url)
-
-    # Ceate a new list to store dictionaries
-    hemisphere_image_urls = []
-
-    # Add name and url image lists to dictionaries
-    for name,img in hemis_zip:
-        hemispheres_dict = {}
-    
-        # Add hemisphere name to dictionary
-        hemispheres_dict['hemisphere_names'] = name
-    
-        # Add image url to dictionary
-        hemispheres_dict['image_url'] = img
-     
-        # Append the list with dictionaries
-        hemisphere_image_urls.append(hemispheres_dict)
  
     # Store all mars data in the dictionary
     mars_data = {
