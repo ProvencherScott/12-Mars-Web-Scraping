@@ -14,7 +14,7 @@ def scrape():
     # Initialize the browser
     browser = init_browser()
 
-    #### Visit NASA's mars page and scrape the first news title and pagraph ###
+    ### Visit NASA url
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
 
@@ -24,17 +24,15 @@ def scrape():
     html = browser.html
     soup = bs(html, "html.parser")
 
-    # Get the first news title
+    # Get the first new title
     title_results = soup.find_all('div', class_='content_title')
     first_title = title_results[0].text
 
-    # Get paragraph text for that title
+    # Get the first paragraph
     paragraph_results = soup.find_all('div', class_='article_teaser_body')
     first_paragraph = paragraph_results[0].text
-    
-    ### Visit NASA's mars page to scrape featured image ###
 
-    # Initialize the browser
+    ## Visit image_url
     browser = init_browser()
 
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -42,27 +40,19 @@ def scrape():
 
     time.sleep(1)
 
-    # Click through pages to find the url for the full image
-    # browser.click_link_by_partial_text('FULL IMAGE')
-    time.sleep(2)
-    # browser.click_link_by_partial_text('more info')
-
     # Scrape page into Soup
     html = browser.html
     soup = bs(html, "html.parser")
 
     # Find featured image url
-    # image = soup.find('figure', class_='lede').a['href']
     featured_image_url2 = 'https://d2pn8kiwq2w21t.cloudfront.net/images/jpegPIA23727.width-768.jpg'
 
-    ### Visit the Space Facts webpage and use Pandas to scrape the Mars facts table ###
-    
-    # Initialize the browser
+    ##Visit the table_url
     browser = init_browser()
-
-    # Scrape table data from page
+    
+    # Scrape the table data from page
     tables = pd.read_html('https://space-facts.com/mars/')
-
+    
     # Turn into a DataFrame
     mars_df = tables[0]
 
