@@ -4,7 +4,7 @@ import time
 import pandas as pd
 
 def init_browser():
-    executable_path = {"executable_path": "/Users/nicolemuscanell/ChromeDriver/chromedriver"}
+    executable_path = {"executable_path": "Users/Scott Proveucher/.wdm/drivers/chromedriver/win32/88.0.4324.96/chromedriver.exe"}
     return Browser("chrome", **executable_path, headless=False)
 
 def scrape():
@@ -23,11 +23,11 @@ def scrape():
 
     # Get the first news title
     title_results = soup.find_all('div', class_='content_title')
-    news_title = title_results[0].text
+    first_title = title_results[0].text
 
     # Get paragraph text for that title
     paragraph_results = soup.find_all('div', class_='article_teaser_body')
-    news_p = paragraph_results[0].text
+    first_paragraph = paragraph_results[0].text
     
     ### Visit NASA's mars page to scrape featured image ###
 
@@ -149,15 +149,12 @@ def scrape():
  
     # Store all mars data in the dictionary
     mars_data = {
-        "news_title": news_title,
-        "news_p": news_p,
+        "first_title": first_title,
+        "first_paragraph": first_paragraph,
         "featured_image_url": featured_image_url,
         "mars_table": mars_table,
         "hemisphere_image_urls": hemisphere_image_urls
     }
-
-    # Close the browser after scraping
-    browser.quit()
 
     # Return results
     return mars_data
